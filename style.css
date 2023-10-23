@@ -1,0 +1,23 @@
+.game-card {
+    height: 70vh;
+    font-family: 'Open Sans', monospace;
+}
+
+
+.card-body{
+    background-color: rgb(45, 252, 252);
+}
+
+.card-header{
+    background-color: rgb(72, 250, 37);
+}
+
+.btn-start{
+    background-color: rgb(43, 175, 252);
+}
+
+.btn-clean{
+    background-color: rgb(250, 18, 69);
+}
+
+
