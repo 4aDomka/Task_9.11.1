@@ -55,22 +55,6 @@ const personGenerator = {
         }
     }`,
 
-    patronymicJson: `{
-        "count": 10,
-        "list": {     
-            "id_1": "Дмитриев",
-            "id_2": "Михайлов",
-            "id_3": "Николаев",
-            "id_4": "Викторов",
-            "id_5": "Иванов",
-            "id_6": "Петров",
-            "id_7": "Степанов",
-            "id_8": "Артёмов",
-            "id_9": "Сергеев",
-            "id_10": "Олегов",
-            "id_11": "Вячеславов"
-        }
-    }`,
 
     professionMaleJson: `{
         "count": 10,
@@ -141,11 +125,47 @@ const personGenerator = {
     },
 
     randomPatronymic: function(){
-        if(this.person.gender == this.GENDER_MALE){
-            return this.randomValue(this.patronymicJson) + "ич";
-        }else{
-            return this.randomValue(this.patronymicJson) + "на";
-        }       
+        let patronymic = this.randomValue(this.firstNameMaleJson);
+        let patronymicLast = patronymic.substr(-1);
+
+        if (this.person.gender == this.GENDER_MALE) {
+            var patronymicMaleName = patronymicLast;
+        } else {
+            var patronymicFemaleName = patronymicLast;
+        }
+
+        switch (patronymicMaleName) {
+            case 'р':
+                return patronymic.replace('р', 'рович');
+            case 'м':
+                return patronymic.replace('м', 'мович');
+            case 'н':
+                return patronymic.replace('н', 'нович');
+            case 'й':
+                return patronymic.replace('й', 'евич');
+            case 'а':
+                return patronymic.replace('а', 'ович');
+            case 'л':
+                return patronymic.replace('л', 'лович');
+        }
+
+        switch (patronymicFemaleName) {
+            case 'р':
+                return patronymic.replace('р', 'ровна');
+            case 'м':
+                return patronymic.replace('м', 'мовна');
+            case 'н':
+                return patronymic.replace('н', 'новна');
+            case 'й':
+                return patronymic.replace('й', 'евна');
+            case 'а':
+                return patronymic.replace('а', 'овна');
+            case 'л':
+                return patronymic.replace('л', 'ловна');
+        }
+
+        return patronymic;
+         
     },
     
     randomMonth31: function randomMonth(){
